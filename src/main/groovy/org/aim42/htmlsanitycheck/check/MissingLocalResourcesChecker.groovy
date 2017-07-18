@@ -5,6 +5,7 @@ import org.aim42.htmlsanitycheck.html.URLUtil
 import org.aim42.htmlsanitycheck.collect.SingleCheckResults
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import org.aim42.filesystem.FileCollector
 
 class MissingLocalResourcesChecker extends Checker {
 
@@ -73,6 +74,7 @@ class MissingLocalResourcesChecker extends Checker {
      */
     private void checkAllLocalResources( Set<String> localResources ) {
         localResources.each { localResource ->
+            if(FileCollector.isHtmlFile(localResource)) 
             checkSingleLocalResource( localResource )
         }
     }
